@@ -29,6 +29,12 @@ public class Funcionario {
 	public Long getId() {
 		return id;
 	}
+	public List<Venda> getVendas() {
+		return vendas;
+	}
+	public void setVendas(List<Venda> vendas) {
+		this.vendas = vendas;
+	}
 	public void setId(Long id) {
 		this.id = id;
 	}

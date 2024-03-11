@@ -2,6 +2,8 @@ package app.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,7 +13,13 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Produto {
-    @Id
+    public List<Venda> getVendas() {
+		return vendas;
+	}
+	public void setVendas(List<Venda> vendas) {
+		this.vendas = vendas;
+	}
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull(message = "Informe o Nome do Produto!")
@@ -20,6 +28,7 @@ public class Produto {
     private double valor;
     
     @ManyToMany(mappedBy = "produtos")
+    @JsonBackReference
     private List<Venda> vendas;
     
 	public Long getId() {

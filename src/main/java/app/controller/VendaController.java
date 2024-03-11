@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import app.entity.Produto;
 import app.entity.Venda;
 import app.service.VendaService;
 
@@ -28,6 +29,16 @@ public class VendaController {
 	@PostMapping("/save")
 	public ResponseEntity<String> save(@RequestBody Venda obj){
 		try {
+			List<Produto> produtos = obj.getProdutos();
+			
+	        double totalVenda = 0.0;
+	        
+	        for (Produto produto : produtos) {
+	            totalVenda += produto.getValor(); 
+	        }
+	        
+	        obj.setValorTotal(totalVenda);
+	        
 			String msg = this.service.save(obj);
 			return new ResponseEntity<String>(msg, HttpStatus.CREATED);
 		} catch (Exception e) {

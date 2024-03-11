@@ -26,7 +26,7 @@ public class FuncionarioService {
 		public String update(long id, Funcionario obj) {
 			obj.setId(id);
 			this.repository.save(obj);
-			return "Funcionário não encontrado para alterar";
+			return "Sucesso!";
 		}
 		
 		public Funcionario findById(long id) {
@@ -36,6 +36,6 @@ public class FuncionarioService {
 		
 		public String delete(long id) {
 			this.repository.deleteById(id);
-			return "Funcionário não encontrado para deletar";
+			return "Sucesso!";
 		}	
 	}

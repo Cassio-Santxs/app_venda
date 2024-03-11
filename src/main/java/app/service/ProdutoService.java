@@ -26,7 +26,7 @@ public class ProdutoService {
 		public String update(long id, Produto obj) {
 			obj.setId(id);
 			this.repository.save(obj);
-			return "Funcionário não encontrado para alterar";
+			return "Sucesso!";
 		}
 		
 		public Produto findById(long id) {
@@ -36,6 +36,6 @@ public class ProdutoService {
 		
 		public String delete(long id) {
 			this.repository.deleteById(id);
-			return "Funcionário não encontrado para deletar";
+			return "Sucesso!";
 		}	
 	}

@@ -26,7 +26,7 @@ public class VendaService {
 		public String update(long id, Venda obj) {
 			obj.setId(id);
 			this.repository.save(obj);
-			return "Venda não encontrada para alterar";
+			return "Sucesso!";
 		}
 		
 		public Venda findById(long id) {
@@ -36,6 +36,6 @@ public class VendaService {
 		
 		public String delete(long id) {
 			this.repository.deleteById(id);
-			return "Venda não encontrada para deletar";
+			return "Sucesso!";
 		}	
 	}

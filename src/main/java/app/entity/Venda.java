@@ -2,6 +2,7 @@ package app.entity;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,17 +23,17 @@ public class Venda {
     @NotNull(message = "Informe o Valor Total!")
     private double valorTotal;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "cliente_id")
     @NotNull(message = "Venda sem cliente associado!")
     private Cliente cliente;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "funcionario_id")
     @NotNull(message = "Venda sem funcionário associado!")
     private Funcionario funcionario;
     
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable
     (
         name = "venda_produto",
@@ -44,6 +45,18 @@ public class Venda {
     
 	public Long getId() {
 		return id;
+	}
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
 	}
 	public void setId(Long id) {
 		this.id = id;
@@ -60,6 +73,11 @@ public class Venda {
 	public void setValorTotal(double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
-	
+	public Cliente getCliente() {
+		return this.cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 	
 }

@@ -72,5 +72,35 @@ public class ClienteController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
-	}	
+	}
+	
+	@GetMapping("/findByNome/{nome}")
+	public ResponseEntity<List<Cliente>> findByNome(String nome){
+		try {
+			List<Cliente> lista = this.service.findByNome(nome);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@GetMapping("/findByCpf/{nome}")
+	public ResponseEntity<List<Cliente>> findByCpf(String cpf){
+		try {
+			List<Cliente> lista = this.service.findByCpf(cpf);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@GetMapping("/findOlderClient/{idade}")
+	public ResponseEntity<List<Cliente>> findByCpf(int idade){
+		try {
+			List<Cliente> lista = this.service.findOlderClient(idade);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
 }

@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -22,7 +23,7 @@ public class Produto {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "Informe o Nome do Produto!")
+    @NotBlank(message = "Informe o Nome do Produto!")
     private String nome;
     @NotNull(message = "Informe o Valor do Produto!")
     private double valor;

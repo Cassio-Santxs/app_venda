@@ -37,5 +37,17 @@ public class ClienteService {
 		public String delete(long id) {
 			this.repository.deleteById(id);
 			return "Sucesso!";
-		}	
+		}
+		
+		public List<Cliente> findByNome(String nome){
+			return this.repository.findByNome(nome);
+		}
+		
+		public List<Cliente> findByCpf(String cpf){
+			return this.repository.findByCpf(cpf);
+		}
+		
+		public List<Cliente> findOlderClient(int idade){
+			return this.repository.findOlderClient(idade);
+		}
 	}

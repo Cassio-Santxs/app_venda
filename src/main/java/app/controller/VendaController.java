@@ -85,4 +85,34 @@ public class VendaController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}	
+	
+	@GetMapping("/findByEnderecoEntrega/{endereco}")
+	public ResponseEntity <List<Venda>> findByEnderecoEntrega(@PathVariable String endereco){
+		try {
+			List<Venda> lista = this.service.findByEnderecoEntrega(endereco);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@GetMapping("/findByValor/{valor}")
+	public ResponseEntity<List<Venda>> findByValor(@PathVariable double valor){
+		try {
+			List<Venda> lista = this.service.findByValorTotal(valor);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@GetMapping("/findByLowerPreco/{valor}")
+	public ResponseEntity<List<Venda>> findByLowerPreco(@PathVariable double valor){
+		try {
+			List<Venda> lista = this.service.findByLowerPreco(valor);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
 }

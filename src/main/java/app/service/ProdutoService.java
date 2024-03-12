@@ -37,5 +37,14 @@ public class ProdutoService {
 		public String delete(long id) {
 			this.repository.deleteById(id);
 			return "Sucesso!";
-		}	
+		}
+		public List<Produto> findByLowerPreco(double valor){
+			return this.repository.findByLowerPreco(valor);
+		}
+		public List<Produto> findByValor (double valor){
+			return this.repository.findByValor(valor);
+		}
+		public List<Produto> findByNome (String nome){
+			return this.repository.findByNome(nome);
+		}
 	}

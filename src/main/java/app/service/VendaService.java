@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import app.entity.Produto;
 import app.entity.Venda;
 import app.repository.VendaRepository;
 
@@ -38,4 +39,16 @@ public class VendaService {
 			this.repository.deleteById(id);
 			return "Sucesso!";
 		}	
+		
+		public List<Venda> findByLowerPreco(double valor){
+			return this.repository.findByLowerPreco(valor);
+		}
+		
+		public List<Venda> findByValorTotal (double valor){
+			return this.repository.findByValorTotal(valor);
+		}
+		
+		public List<Venda> findByEnderecoEntrega (String endereco){
+			return this.repository.findByEnderecoEntrega(endereco);
+		}
 	}

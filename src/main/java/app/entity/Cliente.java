@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -15,13 +16,13 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "Informe o Nome do Cliente!")
+    @NotBlank(message = "Informe o Nome do Cliente!")
     private String nome;
-    @NotNull(message = "Informe o CPF do Cliente!")
+    @NotBlank(message = "Informe o CPF do Cliente!")
     private String cpf;
     @NotNull(message = "Informe a Idade do Cliente!")
     private int idade;
-    @NotNull(message = "Informe o Telefone do Cliente!")
+    @NotBlank(message = "Informe o Telefone do Cliente!")
     private String telefone;
     
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)

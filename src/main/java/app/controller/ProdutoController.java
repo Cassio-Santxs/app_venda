@@ -18,6 +18,7 @@ import app.entity.Produto;
 import app.service.ProdutoService;
 
 
+
 @RestController
 @RequestMapping("/api/produto")
 public class ProdutoController {
@@ -73,5 +74,37 @@ public class ProdutoController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
-	}	
+	}
+	
+	@GetMapping("/findByNome/{nome}")
+	public ResponseEntity <List<Produto>> findByNome(@PathVariable String nome){
+		try {
+			List<Produto> lista = this.service.findByNome(nome);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@GetMapping("/findByValor/{valor}")
+	public ResponseEntity<List<Produto>> findByValor(@PathVariable double valor){
+		try {
+			List<Produto> lista = this.service.findByValor(valor);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@GetMapping("/findByLowerPreco/{valor}")
+	public ResponseEntity<List<Produto>> findByLowerPreco(@PathVariable double valor){
+		try {
+			List<Produto> lista = this.service.findByLowerPreco(valor);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	
 }

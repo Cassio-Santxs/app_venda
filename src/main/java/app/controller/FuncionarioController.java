@@ -18,6 +18,7 @@ import app.entity.Funcionario;
 import app.service.FuncionarioService;
 
 
+
 @RestController
 @RequestMapping("/api/funcionario")
 public class FuncionarioController {
@@ -73,5 +74,33 @@ public class FuncionarioController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
-	}	
+	}
+	@GetMapping("/findByNome/{nome}")
+	public ResponseEntity<List<Funcionario>> findByNome(@PathVariable String nome){
+		try {
+			List<Funcionario> lista = this.service.findByNome(nome);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	@GetMapping("/findByMatricula/{matricula}")
+	public ResponseEntity<List<Funcionario>> findByMatricula(@PathVariable String matricula){
+		try {
+			List<Funcionario> lista = this.service.findByMatricula(matricula);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	@GetMapping("/findByOlderFuncionario/{idade}")
+	public ResponseEntity<List<Funcionario>> findByOlderFuncionario(@PathVariable int idade){
+		try {
+			List<Funcionario> lista = this.service.findByOlderFuncionario(idade);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
 }

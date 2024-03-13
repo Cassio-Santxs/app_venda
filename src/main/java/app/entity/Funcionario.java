@@ -2,6 +2,8 @@ package app.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,6 +27,7 @@ public class Funcionario {
     private String matricula;
     
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Venda> vendas;
     
 	public Long getId() {

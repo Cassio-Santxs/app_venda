@@ -13,6 +13,6 @@ public interface VendaRepository extends JpaRepository<Venda, Long> {
 	
 	public List <Venda> findByValorTotal(double valor);
 	
-	@Query("FROM Venda WHERE valorTotal > :valor")
+	@Query("FROM Venda WHERE valorTotal < :valor")
 	public List<Venda> findByLowerPreco (double valor);
 }

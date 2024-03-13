@@ -75,7 +75,7 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/findByNome/{nome}")
-	public ResponseEntity<List<Cliente>> findByNome(String nome){
+	public ResponseEntity<List<Cliente>> findByNome(@PathVariable String nome){
 		try {
 			List<Cliente> lista = this.service.findByNome(nome);
 			return new ResponseEntity<>(lista, HttpStatus.OK);
@@ -84,8 +84,8 @@ public class ClienteController {
 		}
 	}
 	
-	@GetMapping("/findByCpf/{nome}")
-	public ResponseEntity<List<Cliente>> findByCpf(String cpf){
+	@GetMapping("/findByCpf/{cpf}")
+	public ResponseEntity<List<Cliente>> findByCpf(@PathVariable String cpf){
 		try {
 			List<Cliente> lista = this.service.findByCpf(cpf);
 			return new ResponseEntity<>(lista, HttpStatus.OK);
@@ -95,7 +95,7 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/findOlderClient/{idade}")
-	public ResponseEntity<List<Cliente>> findByCpf(int idade){
+	public ResponseEntity<List<Cliente>> findOlderClient(@PathVariable int idade){
 		try {
 			List<Cliente> lista = this.service.findOlderClient(idade);
 			return new ResponseEntity<>(lista, HttpStatus.OK);

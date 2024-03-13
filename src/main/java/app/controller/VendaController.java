@@ -46,9 +46,19 @@ public class VendaController {
 		}
 	}
 	
-	@PutMapping("/update/{id}")
+	@PostMapping("/update/{id}")
 	public ResponseEntity<String> update(@RequestBody Venda obj, @PathVariable int id){
 		try {
+			List<Produto> produtos = obj.getProdutos();
+			
+			double totalVenda = 0.0;
+			
+			for (Produto produto : produtos) {
+	            totalVenda += produto.getValor(); 
+	        }
+			
+			obj.setValorTotal(totalVenda);
+			obj.setProdutos(produtos);
 			String msg = this.service.update(id, obj);
 			return new ResponseEntity<String>(msg, HttpStatus.OK);
 		} catch (Exception e) {

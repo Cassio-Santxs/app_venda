@@ -13,6 +13,6 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 	
 	public List <Produto> findByValor(double valor);
 	
-	@Query("FROM Produto WHERE valor > :valor")
+	@Query("FROM Produto WHERE valor < :valor")
 	public List<Produto> findByLowerPreco (double valor);
 }

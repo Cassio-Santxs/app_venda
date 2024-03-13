@@ -2,6 +2,8 @@ package app.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -41,6 +43,7 @@ public class Venda {
         inverseJoinColumns = @JoinColumn(name = "produto_id")
     )
     @NotNull(message = "Venda sem produtos adicionados!")
+    @JsonBackReference
     private List<Produto> produtos;
     
 	public Long getId() {

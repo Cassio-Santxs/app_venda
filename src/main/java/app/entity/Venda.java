@@ -2,7 +2,7 @@ package app.entity;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -22,16 +22,19 @@ public class Venda {
     private Long id;
     
     private String enderecoEntrega;
+    
     @NotNull(message = "Informe o Valor Total!")
     private double valorTotal;
     
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "cliente_id")
+    @JsonIgnoreProperties("vendas")
     @NotNull(message = "Venda sem cliente associado!")
     private Cliente cliente;
     
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "funcionario_id")
+    @JsonIgnoreProperties("vendas")
     @NotNull(message = "Venda sem funcionário associado!")
     private Funcionario funcionario;
     
@@ -43,7 +46,7 @@ public class Venda {
         inverseJoinColumns = @JoinColumn(name = "produto_id")
     )
     @NotNull(message = "Venda sem produtos adicionados!")
-    @JsonBackReference
+    @JsonIgnoreProperties("vendas")
     private List<Produto> produtos;
     
 	public Long getId() {

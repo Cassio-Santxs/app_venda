@@ -16,6 +16,7 @@ public class VendaService {
 		private VendaRepository repository;
 		
 		public String save(Venda obj) {
+			setTotalVenda(obj);
 			this.repository.save(obj);
 			return "Venda salva com sucesso.";
 		}
@@ -26,6 +27,7 @@ public class VendaService {
 		
 		public String update(long id, Venda obj) {
 			obj.setId(id);
+			setTotalVenda(obj);
 			this.repository.save(obj);
 			return "Sucesso!";
 		}
@@ -50,5 +52,17 @@ public class VendaService {
 		
 		public List<Venda> findByEnderecoEntrega (String endereco){
 			return this.repository.findByEnderecoEntrega(endereco);
+		}
+		
+		private void setTotalVenda(Venda obj) {
+			List<Produto> produtos = obj.getProdutos();
+			
+			double totalVenda = 0.0;
+			
+			for (Produto produto : produtos) {
+	            totalVenda += produto.getValor(); 
+	        }
+			
+			obj.setValorTotal(totalVenda);
 		}
 	}

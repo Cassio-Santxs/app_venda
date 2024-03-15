@@ -1,25 +1,20 @@
 package app.entity;
 
-import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
+@Table
 public class Produto {
-    public List<Venda> getVendas() {
-		return vendas;
-	}
-	public void setVendas(List<Venda> vendas) {
-		this.vendas = vendas;
-	}
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,7 +24,6 @@ public class Produto {
     private double valor;
     
     @ManyToMany(mappedBy = "produtos")
-    @JsonBackReference
     private List<Venda> vendas;
     
 	public Long getId() {
@@ -50,5 +44,12 @@ public class Produto {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
+	public List<Venda> getVendas() {
+		return vendas;
+	}
+	public void setVendas(List<Venda> vendas) {
+		this.vendas = vendas;
+	}
+	
 }
 
